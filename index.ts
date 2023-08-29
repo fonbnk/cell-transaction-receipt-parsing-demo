@@ -20,6 +20,7 @@ async function getTransactionReceipt({
   transactionHash: string;
   recipientAddress: string;
 }): Promise<{
+  successful: boolean;
   from: string;
   to: string | null;
   amount: number | null;
@@ -84,6 +85,7 @@ async function getTransactionReceipt({
   }
 
   return {
+    successful: receipt.status === 1,
     from: receipt.from,
     to: recipientAddress,
     amount: log.value,
